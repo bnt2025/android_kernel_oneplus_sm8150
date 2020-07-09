@@ -1,5 +1,6 @@
 #!/bin/bash
 export KERNELDIR=`readlink -f .`
+export PARENT="$(dirname "$KERNELDIR")"
 export RAMFS_SOURCE=`readlink -f $KERNELDIR/ramdisk`
 export PARTITION_SIZE=100663296
 
@@ -28,7 +29,7 @@ else
 	fi
 	echo "Compiling kernel"
 	cp defconfig .config
-	make "$@" || exit 1
+	CROSS_COMPILE="$PARENT/arm64-gcc/bin/aarch64-elf-" CROSS_COMPILE_ARM32="$PARENT/arm32-gcc/bin/aarch64-elf-" make "$@" || exit 1
 	if [[ "$stock" == "1" ]] ; then
 		sed -i -e 's@"skip_initramfs"@"want_initramfs"@g' init/initramfs.c
 	fi
