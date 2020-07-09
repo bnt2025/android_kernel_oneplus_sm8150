@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export KERNELDIR=`readlink -f .`
+export PARENT="$(dirname "$KERNELDIR")"
+
 if [[ "${1}" != "skip" ]] ; then
 	./build_clean.sh
 	./build_kernel.sh stock "$@" || exit 1
@@ -32,7 +35,7 @@ block=/dev/block/bootdevice/by-name/boot
 is_slot_device=1
 ramdisk_compression=gzip
 " > kernelzip/props
-	cp -rp ~/android/anykernel/* kernelzip/
+	cp -rp $PARENT/AnyKernel3/* kernelzip/
 	find arch/arm64/boot/dts -name '*.dtb' -exec cat {} + > kernelzip/dtb
 	cd kernelzip/
 	7z a -mx9 arter97-kernel-$VERSION-tmp.zip *
