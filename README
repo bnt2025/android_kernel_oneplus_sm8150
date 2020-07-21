@@ -1,3 +1,18 @@
+# Intro
+
+This is a fork of arter97's kernel for the OnePlus 7 family of devices. I needed a kernel with the QCA-CLD driver compiled with monitor mode enabled.  
+
+## Usage
+
+Tol download and install the various dependancies require to build the kernel.  
+- `bash ./build_env.sh`
+
+To actually build the kernel use;
+- `bash ./build_master.sh -j$(nproc)`
+
+This will spit out a `.zip` that can be flashed using TWRP.
+
+
 Linux kernel
 ============
 
