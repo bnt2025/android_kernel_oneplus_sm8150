@@ -36,8 +36,18 @@ get_build_deps() {
     # if [ ! -e dtc ]; then git clone git://git.kernel.org/pub/scm/utils/dtc/dtc.git; fi
     if [ ! -e dtc ]; then git clone https://github.com/dgibson/dtc.git; fi
     if [ ! -e AnyKernel3 ]; then git clone https://github.com/arter97/AnyKernel3.git; fi
-    if [ ! -e arm32-gcc ]; then git clone https://github.com/arter97/arm32-gcc.git; fi
-    if [ ! -e arm64-gcc ]; then git clone https://github.com/arter97/arm64-gcc.git; fi
+    if [ ! -e arm32-gcc ]; then 
+        git clone https://github.com/arter97/arm32-gcc.git
+        cd arm32-gcc
+        # There are probably newer commits that work, but these was around the time I was working on it
+        git checkout 28cb8b1061c9af241929a112587b1a1698b8a19b
+    fi
+    if [ ! -e arm64-gcc ]; then 
+        git clone https://github.com/arter97/arm64-gcc.git; 
+        cd arm64-gcc
+        # There are probably newer commits that work, but these was around the time I was working on it
+        git checkout c2a52681bb9763e4f47348f8da5d8a097e070611
+    fi
 }
 
 # Install the latest version of Device Tree Compiler
