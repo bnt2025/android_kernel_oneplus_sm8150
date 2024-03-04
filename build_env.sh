@@ -23,6 +23,9 @@ get_deps() {
     if ! which pkg-config 2>&1 >/dev/null; then sudo apt install -y pkg-config; fi
     if ! which flex 2>&1 >/dev/null; then sudo apt install -y flex; fi
     if ! which bison 2>&1 >/dev/null; then sudo apt install -y bison; fi
+    
+    if ! which fakeroot 2>&1 >/dev/null; then sudo apt install -y fakeroot; fi
+    if ! which lz4 2>&1 >/dev/null; then sudo apt install -y lz4; fi
 
     if ! dpkg -l libncurses5-dev 2>&1 >/dev/null; then sudo apt install -y libncurses5-dev; fi
 
